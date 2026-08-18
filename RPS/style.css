@@ -67,6 +67,20 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     filter: none;
 }
+@media screen and (max-width: 400px) {
+    .btns {
+        height: fit-content;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 1.6vh;
+    }
+    .picker {
+        height: max-content;
+    }
+    .con {
+        height: min-content;
+    }
+}
 
 .scores {
     width: 100%;

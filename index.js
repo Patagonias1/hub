@@ -2,8 +2,6 @@ const MAINFX = document.getElementsByClassName('fxmain')[0]
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('')
 
-console.log(CHARS[Math.floor(Math.random() * CHARS.length)]);
-
 let listchars = []
 
 function newfxchar() {
@@ -21,7 +19,8 @@ function newfxchar() {
     return fxchar
 }
 
-for (let i = 0; i < 40; i++) {
+let amt = window.innerWidth > 400 ? 200 : 35
+for (let i = 0; i < amt; i++) {
     newfxchar()
 }
 
