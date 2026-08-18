@@ -21,7 +21,7 @@ function newfxchar() {
     return fxchar
 }
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 40; i++) {
     newfxchar()
 }
 
