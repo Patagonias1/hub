@@ -1,0 +1,293 @@
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: none;
+}
+
+* {
+    font-family: monospace;
+    color: white;
+    user-select: none;
+    transition: none;
+} 
+
+body {
+    background-color: rgb(12, 11, 26);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none;
+    overflow: hidden;
+}
+
+.con { 
+    transition: .1s;
+    width: 90%; 
+    height: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5rem;
+    gap: 2%;
+}.picker {
+    transition: .1s;
+    width: 100%;
+    height: 40%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4));
+
+    gap: 2%;
+}.btns {
+    width: 80%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5%;
+    
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    filter: none;
+}
+
+.scores {
+    width: 100%;
+    height: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    
+    gap: 1%;
+}.score {
+    width: 25%;
+    height: 6rem;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-radius: 1.5rem;
+    
+    background-color: rgb(12, 11, 26);
+    font-size: xx-large;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4));
+
+    gap: 2%;
+}
+
+.result {
+    font-size: x-large;
+}
+
+button {
+    transition: .2s;
+    width: fit-content;
+    height: 1.5rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    
+    border: 2px solid black;
+    /* border-radius: 10rem; */
+    border-width: 1px;
+    border-image: linear-gradient(to bottom, black, rgb(40, 40, 100) 90%) 1;   
+    background-color: transparent;
+    filter: drop-shadow(0px 0px 10px rgb(35, 35, 100));
+}
+button:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5)) saturate(2) brightness(1.2) !important;
+    animation: floatbtn 2s -1s ease-in-out infinite alternate;
+}
+button:active {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)) saturate(3) brightness(1.5) !important;
+    animation: shaketxt .2s infinite alternate ease-in-out
+}.idbtns {
+    font-weight: bold;
+    display: inline;
+    opacity: 60%;
+    padding: .5rem;
+    filter: drop-shadow(0px 0px 5px black);
+}
+
+.player1 {
+    user-select: all;
+    color: rgb(19, 181, 87);    
+    filter: drop-shadow(0px 0px 2.5px);
+}
+.player2 {
+    user-select: all;
+    color: rgb(203, 46, 109);
+    filter: drop-shadow(0px 0px 2.5px);
+}
+
+.d {
+    height: 3px;
+    width: 80%;
+    background-color: rgb(13, 16, 21);
+}
+
+
+
+.over {
+    z-index: 2;
+    transition: .5s ease-in-out;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    user-select: none;
+    /* pointer-events: none; */
+    
+    background-color: rgba(11, 11, 30, 0.9);
+}
+
+.shaking {
+    animation: shaketxt .2s infinite alternate ease-in-out
+}
+
+h1 {
+    font-size: 4rem;
+}p {
+    font-size: large;
+}
+
+.rules {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    height: 90%;
+    border-radius: 3rem;
+    background-color: rgba(240, 240, 255, 0.1);
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    height: 90%;
+    border-radius: 3rem;
+    background-color: rgba(240, 240, 255, 0.1);
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    border: .3rem rgba(255, 255, 255, 0.2) solid;
+    background-color: rgba(17, 15, 32, 0.75);
+}.graph {
+    width: 40rem;
+    height: 40rem;
+}
+
+
+@keyframes shake1 {
+    0% {
+        transform: translate(0.073%, 0.074%);
+    }
+    20% {
+        transform: translate(0.071%, 0.073%) scale(1.1);
+    }
+    40% {
+        transform: translate(-0.071%, 0.071%);
+    }
+    60% {
+        transform: translate(0.072%, -0.073%);
+    }
+    80% {
+        transform: translate(-0.073%, 0.072%) scale(1.1);
+    }
+    100% {
+        transform: translate(0.071%, 0.070%);
+    }
+
+}@keyframes shake2 {
+    0% {
+        transform: translate(0.173%, 0.174%);
+    }
+    20% {
+        transform: translate(0.171%, 0.173%);
+    }
+    40% {
+        transform: translate(-0.171%, 0.171%);
+    }
+    60% {
+        transform: translate(0.172%, -0.173%);
+    }
+    80% {
+        transform: translate(-0.173%, 0.172%);
+    }
+    100% {
+        transform: translate(0.171%, 0.170%);
+    }
+
+}
+
+@keyframes shaketxt {
+    0% {
+        filter: drop-shadow(0px 0px 5px);
+        transform: translate(.5px, .5px);
+    }
+    20% {
+        filter: drop-shadow(0px 0px 5px);
+        transform: translate(.5px, .5px);
+    }
+    40% {
+        filter: drop-shadow(0px 0px 5px);
+        transform: translate(-.5px, .5px);
+    }
+    60% {
+        filter: drop-shadow(0px 0px 2.5px);
+        transform: translate(.5px, -.5px);
+    }
+    80% {
+        filter: drop-shadow(0px 0px 2.5px);
+        transform: translate(-.5px, .5px);
+    }
+    100% {
+        filter: drop-shadow(0px 0px 2.5px);
+        transform: translate(.5px, .5px);
+    }
+
+}
+@keyframes floatbtn {
+    0% {
+        transform: scale(1.2) translateY(10%);
+    }
+    100% {
+        transform: scale(1.2) translateY(-10%);
+    }
+
+}

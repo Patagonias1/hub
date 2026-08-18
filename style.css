@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Bytesized&display=swap');
+
+* {
+    font-family: monospace;
+    color: white;
+}
+
+body {
+    background-image: linear-gradient(0deg, rgb(0, 33, 11), black);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+h2 {
+    color: lime;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.projects {
+    left: 0px;
+    width: 95%;
+    height: 70%;
+    border: .15rem solid lime;
+    padding: 3vh;
+    border-radius: 2vh;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}.proj {
+    width: 25%;
+    border: .15rem solid limegreen;
+    padding: 2vh;
+    border-radius: 2vh;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    background-image: linear-gradient(to left, rgba(0, 107, 0, 0.501), transparent 30%);
+    filter: drop-shadow(0px 0px 30px rgba(154, 255, 154, 0.5));
+    transition: .3s ease-out;
+}.proj.inactive {
+    opacity: 50%;
+    filter: saturate(.2);
+}img.inactive {
+    opacity: 50%;
+}.proj:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1) drop-shadow(0px 0px 30px limegreen) hue-rotate(10deg);
+}.proj.inactive:hover {
+    transform: scale(.97);
+    filter: saturate(.2) brightness(.5);
+}
+
+.rnginput {
+    width: 35%;
+    border: .15rem solid limegreen;
+    padding: 1vh;
+    border-radius: 2vh;
+    color: lime;
+    background: none;
+}
+
+
+
+
+.fxmain {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+}.fxchar {
+    user-select: none;
+    bottom: 100%;
+    position: absolute;
+    left: 10%;
+    color: lime;
+    font-size: large;
+    opacity: 75%;
+    animation: fxchardown 15s ease-out infinite;
+    font-weight: 400;
+    filter: drop-shadow(0px 0px 15px lime);
+}
+
+@keyframes fxchardown {
+    from {
+        bottom: 100%;
+    }
+    to {
+        bottom: -30%;
+        opacity: 30%;
+    }
+}
+
+
+.credit {
+    text-align: center;
+    color: limegreen;
+    opacity: 40%;
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+}.credit a{
+    color: limegreen;
+}

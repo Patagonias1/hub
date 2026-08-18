@@ -1,0 +1,43 @@
+body {
+    background-color: rgb(126, 112, 104);
+    font-family: monospace;
+    user-select: none;
+    overflow: hidden;
+}
+
+.c {
+    z-index: 1;
+    position: absolute;
+    background-color: rgb(186, 179, 164);
+    border-radius: 60px;
+    text-align: center;
+    left: 2%;
+    top: 5%;
+}
+
+.imagery {
+    display: none;
+}
+
+.lose {
+    z-index: 2;
+    display: none;
+    color: brown;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+}
+
+.flip {
+    transform: scaleX(-1);
+}
+
+@keyframes boing {
+    0% {font-size: 20px;
+        opacity: 20%;}; 
+    10% {opacity: 80%;}
+    100% {font-size: 70px;
+        left: 28%;
+        top: 30%;
+    };
+}
