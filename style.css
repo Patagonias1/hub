@@ -9,7 +9,7 @@ body {
     background-image: linear-gradient(0deg, rgb(0, 33, 11), black);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow-x: hidden;
     width: 100%;
     height: 100%;
     display: flex;
