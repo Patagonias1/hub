@@ -5,6 +5,14 @@
     color: white;
 }
 
+html {
+    scrollbar-color: limegreen rgb(0, 17, 0);
+    scrollbar-gutter: none;
+    /* width: 100%;
+    height: 100%; */
+}
+
+
 body {
     background-image: linear-gradient(0deg, rgb(0, 33, 11), black);
     background-repeat: no-repeat;
@@ -14,6 +22,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
+    scroll-behavior: smooth;
 }
 ::selection {
     background-color: rgb(116, 255, 116);
@@ -90,16 +99,17 @@ h2 {
 
 @media screen and (max-width: 800px) {
     .main {
-        width: 90%;
+        width: 80%;
     }
     .projects {
-        gap: 1vh;
+        gap: 1vw;
     }
     .proj {
         width: 30%;
         flex-direction: column;
         gap: 1vh;
     }
+
 }
 
 
@@ -115,8 +125,9 @@ h2 {
     z-index: -1;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 120%;
     opacity: 50%;
+    overflow: hidden;
 }.fxchar {
     user-select: none;
     bottom: 100%;
@@ -132,9 +143,11 @@ h2 {
 
 @keyframes fxchardown {
     from {
+        /* transform: translateY(0px); */
         bottom: 100%;
     }
     to {
+        /* transform: translateY(1000px); */
         bottom: -30%;
         opacity: 30%;
     }
