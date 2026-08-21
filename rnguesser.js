@@ -8,7 +8,7 @@ function s() {
 // function s(t) { 
     t = INP.value
     
-    n = Math.floor(Math.random() * t) 
+    n = Math.ceil(Math.random() * t) 
 
     while (m != n) { 
 
@@ -17,6 +17,7 @@ function s() {
         if (m == null) { 
 
             window.alert("Perdeu!") 
+            i = 0;
 
             break; 
 

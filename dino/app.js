@@ -3,13 +3,17 @@ const CV = document.getElementById('canvas')
 let ctx = CV.getContext('2d')
 const CV_HEIGHT = CV.height
 const CV_WIDTH = CV.width
-
+function makeSprite(src) {
+    i = new Image()
+    i.src = src
+    return i 
+}
 
 // Setup game
 let score = 0
 let jumping = false
 let speed = 3;
-let speedIncrease = 0.1;
+let speedIncrease = 0.001;
 const FLOORHEIGHT = (CV_HEIGHT / 2) + 50
 {
     document.addEventListener('keydown', e => {
@@ -32,12 +36,20 @@ const FLOORHEIGHT = (CV_HEIGHT / 2) + 50
     document.addEventListener('mouseup', () => {
         jumping = false
     })
+    document.addEventListener('touchstart', () => {
+        jumping = true
+        console.log('Jumping');
+        
+    })
+    document.addEventListener('touchend', () => {
+        jumping = false
+    })
 }
 
 
 // Physics
-let gravity = 3;
-let jumpHeight = 100
+let gravity = .8;
+let jumpHeight = 15
 let verticalAccel = 0
 let onGround = true
 
@@ -50,7 +62,10 @@ let dino = {
     h: 40,
     x: 120,
     y: FLOORHEIGHT,
-    sprite: 'blabla'
+    sprites: [
+        makeSprite('img/dino_run.png'),
+        makeSprite('img/dino_jump.png')
+    ]
 }
 
 
@@ -66,7 +81,7 @@ const ENEMYS = [
 ]
 
 
-
+let sn = 0
 function draw() {
     ctx.clearRect(0, 0, CV_WIDTH, CV_HEIGHT)
     score++
@@ -79,17 +94,59 @@ function draw() {
     ctx.lineTo(CV_WIDTH, FLOORHEIGHT);
     ctx.stroke()
 
+    // Speed
+    speed += speedIncrease
+
     // Player
     if (jumping) {
-        // onGround = false
-        verticalAccel =  verticalAccel - (verticalAccel * gravity)
-        dino.y += verticalAccel
-        
+        if (onGround) {
+            verticalAccel = jumpHeight
+            onGround = false
+            sn = 0
+        }
     }
-    verticalAccel =  verticalAccel - (verticalAccel * gravity)
-    // verticalAccel += gravity
+    if (dino.y > FLOORHEIGHT) {
+        dino.y = FLOORHEIGHT
+        onGround = true
+        verticalAccel = 0
+    } else {
+        if (dino.y - (verticalAccel - gravity) > FLOORHEIGHT) {
+            onGround = true
+            verticalAccel = 0
+        } else {
+            verticalAccel = verticalAccel - gravity
+        }
+    }
+    
+    // Draw Dino
+    dino.y -= verticalAccel
     ctx.fillStyle="darkblue";
-    ctx.fillRect(dino.x, dino.y - dino.h, dino.w, dino.h);
+    // ctx.fillRect(dino.x, dino.y - dino.h, dino.w, dino.h);
+
+    if (onGround) {
+        // if (score % 4 == 0) {
+        if (Math.floor(score % (4 - speed / 4)) == 0) {
+            sn++
+            if (sn > 3) {
+                sn = 0
+            } 
+        }
+        ctx.drawImage(dino.sprites[0],
+            46 * sn, 0, 46, 38, dino.x, dino.y - dino.h, dino.w, dino.h
+        )
+    } else {
+        
+        if (score % 8 == 0) {
+            sn++
+            if (sn > 3) {
+                sn = 3
+            } 
+        }
+        ctx.drawImage(dino.sprites[1],
+            50 * sn, 0, 50, 40, dino.x, dino.y - dino.h, dino.w, dino.h
+        )
+
+    }
 
 
     //o
@@ -134,9 +191,11 @@ window.requestAnimationFrame(draw)
 
 
 
-// setInterval(() => {
+setInterval(() => {
+    // console.log('va: ', verticalAccel);
+    // console.log('g: ', onGround);
 //     // console.log('a: ', a);
 //     console.log('ot: ', ot);
 //     console.log('ott: ', ott);
     
-// }, 1000);
+}, 1000);

@@ -29,11 +29,11 @@ body {
     background-color: rgb(147, 189, 195);
     border-radius: 1vw;
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 500px) {
     .con {
-        width: 50%;
+        width: 100%;
     }
     .cv {
-        width: 300px;
+        width: 95%;
     }
 }
