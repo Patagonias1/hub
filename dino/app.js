@@ -12,8 +12,9 @@ function makeSprite(src) {
 // Setup game
 let score = 0
 let jumping = false
-let speed = 3;
+let speed = 6;
 let speedIncrease = 0.001;
+let died = false
 const FLOORHEIGHT = (CV_HEIGHT / 2) + 50
 {
     document.addEventListener('keydown', e => {
@@ -64,27 +65,34 @@ let dino = {
     y: FLOORHEIGHT,
     sprites: [
         makeSprite('img/dino_run.png'),
-        makeSprite('img/dino_jump.png')
+        makeSprite('img/dino_jump.png'),
+        makeSprite('img/dino_dead.png')
     ]
 }
 
 
 // Enemys 
-const ENEMYS = [
-    {
-        w: 40,
-        h: 40,
-        x: 150,
-        y: FLOORHEIGHT - 40,
-        sprite: 'en1'
-    },
+class Enemy {
+    constructor(w, h, x, y, color) {
+        this.w = w
+        this.h = h
+        this.x = CV_WIDTH + x
+        this.y = FLOORHEIGHT + y
+        this.color = color || 'red'
+        this.speedMod = 1
+        this.sprite = ''
+    }
+}
+let enemies = [
+    new Enemy(40, 40, 100, 0, 'brown'),
+    new Enemy(80, 40, 0, 0, 'darkred')
 ]
-
 
 let sn = 0
 function draw() {
     ctx.clearRect(0, 0, CV_WIDTH, CV_HEIGHT)
     score++
+    ctx.fillStyle="black";
     ctx.font = "20px monospace"
     ctx.fillText('SCORE: ' + score, (CV_WIDTH / 10) * 8.2, CV_HEIGHT / 10)
 
@@ -120,59 +128,88 @@ function draw() {
     
     // Draw Dino
     dino.y -= verticalAccel
-    ctx.fillStyle="darkblue";
-    // ctx.fillRect(dino.x, dino.y - dino.h, dino.w, dino.h);
+    // ctx.fillStyle="darkblue";
+    ctx.fillStyle="rgba(39, 39, 117, .2)";
+    ctx.fillRect(dino.x, dino.y - dino.h, dino.w, dino.h);
 
-    if (onGround) {
-        // if (score % 4 == 0) {
-        if (Math.floor(score % (4 - speed / 4)) == 0) {
-            sn++
-            if (sn > 3) {
-                sn = 0
-            } 
-        }
-        ctx.drawImage(dino.sprites[0],
-            46 * sn, 0, 46, 38, dino.x, dino.y - dino.h, dino.w, dino.h
-        )
-    } else {
-        
+    // died = true
+    if (died) {
         if (score % 8 == 0) {
             sn++
             if (sn > 3) {
                 sn = 3
             } 
         }
-        ctx.drawImage(dino.sprites[1],
-            50 * sn, 0, 50, 40, dino.x, dino.y - dino.h, dino.w, dino.h
+        ctx.drawImage(dino.sprites[2],
+            44 * sn, 0, 44, 20, dino.x, dino.y - 20, dino.w, 20
         )
+    } else {
 
-    }
+        
+        if (onGround) {
+            // if (score % 4 == 0) {
+                if (Math.floor(score % (4 - speed / 4)) == 0) {
+                    sn++
+                    if (sn > 3) {
+                        sn = 0
+                    } 
+                }
+                ctx.drawImage(dino.sprites[0],
+                    46 * sn, 0, 46, 38, dino.x, dino.y - 38, dino.w, 38
+                )
+            } else {
+                
+                if (score % 8 == 0) {
+                    sn++
+                    if (sn > 3) {
+                        sn = 3
+                    } 
+                }
+                ctx.drawImage(dino.sprites[1],
+                    50 * sn, 0, 50, 40, dino.x, dino.y - 40, dino.w, 40
+                )
+                
+            }
+        }
+            
+            
+            
+            
+            
+    enemies.forEach(e => {
+        e.x -= speed * e.speedMod
+        ctx.fillStyle=e.color;
+        ctx.fillRect(e.x, e.y - e.h, e.w, e.h);
+    
+        if (e.x + (e.w * 1.5) <= 0) {
+            enemies.shift()
+        }
+    });
+    
 
 
-    //o
-    // ctx.fillStyle="darkred";
-    // ctx.fillRect(o[0], dino.y, dino.w, dino.h);
-    // ctx.fillRect(o[1], dino.y, dino.w, dino.h);
-    // ctx.fillRect(o[2], dino.y, dino.w, dino.h);
-    // o[0] -= speed
-    // o[1] -= speed
-    // o[2] -= speed
 
-    // ot--
-    // if (ot == 0) {
-    //     ot = 100
-    //     ott++
-    //     if (ott > 3) {
-    //         ott = -1
+
+    // Hit
+    // c = false
+    // enemies.forEach(e => {
+        
+    //     if (
+    //         (dino.x + dino.w) > e.x ||  
+    //         dino.x < (e.x + e.w)  
+    //     ) {
+    //         c = true
     //     }
-    //     o[ott] += 800 + (Math.floor(Math.random() * 800))
-
-    // }
-
-
-
-
-
+        
+    //     if (
+    //         c && e.y < (dino.y - dino.h) || 
+    //         c && (e.y + e.h) > dino.y  
+    //     ) {
+    //         died = true;
+    //         console.log('died');     
+    //     }
+    // });
+    
 
 
 
@@ -198,4 +235,6 @@ setInterval(() => {
 //     console.log('ot: ', ot);
 //     console.log('ott: ', ott);
     
+        console.log('Enemy x', enemies[0].x, (dino.x + dino.w), + '\n',
+            '-', (enemies[0].x + enemies[0].w), dino.x);
 }, 1000);
