@@ -1,0 +1,42 @@
+.back {
+    position: absolute;
+    padding: 1vh;
+    overflow: visible;
+    z-index: 100;
+}
+.back button {
+    font-size: 15px;
+    transition: .2s ease-out;
+    color: black;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background-color: limegreen;
+    font-weight: bolder;
+    filter: drop-shadow(0px 0px 10px rgba(0, 255, 0, 0.5));
+} .back button:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 5px rgba(0, 255, 0, 1)) brightness(1.2);
+} .back button:active {
+    transition: .1s;
+    transform: scale(.9);
+    filter: drop-shadow(0px 0px 5px rgb(0, 255, 85)) brightness(1.4);
+}
+
+.back.tl {
+    top: 2%;
+    left: 2%;
+}
+.back.tr {
+    top: 2%;
+    right: 2%;
+}
+.back.bl {
+    bottom: 2%;
+    left: 2%;
+}
+.back.br {
+    bottom: 2%;
+    right: 2%;
+}

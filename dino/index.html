@@ -5,12 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../back.css">
     <link rel="shortcut icon" href="../media/logo_dino.png" type="image/x-icon">
 </head>
 <body>
     <div class="con">
-        <canvas id="canvas" class="cv" width="900" height="600"></canvas>
+        <div class="stylemenu">
+            <h2>Themes</h2><br>
+            <button name="themebtn">classic_</button>
+            <button name="themebtn">RETRO</button>
+            <button name="themebtn">RETRO II</button>
+        </div>
+
+        <canvas id="canvas" class="cv" width="900" height="600" style="user-select: all; pointer-events: all;"></canvas>
+
+        <div class="fxcon no" style="transform: translate(-5px, 0px);">
+            <canvas name="canvasfx" class="cv fx" width="900" height="600"></canvas>
+            <div class="ca red"></div>
+        </div>
+        <div class="fxcon" style="transform: translate(0px, 5px);">
+            <canvas name="canvasfx" class="cv fx" width="900" height="600"></canvas>
+            <div class="ca green"></div>
+        </div>
+        <div class="fxcon" style="transform: translate(2.5px, 2.5px);">
+            <canvas name="canvasfx" class="cv fx" width="900" height="600"></canvas>
+            <div class="ca blue"></div>
+        </div>
+
     </div>
+
+    <!DOCTYPE html>
+
+    <div class="back bl">
+        <a href="../index.html">
+            <button><-</button>
+        </a>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
