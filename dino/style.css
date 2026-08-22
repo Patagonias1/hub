@@ -134,11 +134,12 @@ body {
         width: 95%;
         height: 33%;
 
-
-
     }.stylemenu {
         width: 95%;
         top: 20%;
+    }.stylemenu button {
+        width: 15%;
+        font-size: 1vh;
     }
 }
 
